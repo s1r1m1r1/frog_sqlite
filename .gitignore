@@ -7,6 +7,7 @@
 .dart_tool/
 .packages
 pubspec.lock
+help.md
 
 # Files and directories created by dart_frog
 build/
