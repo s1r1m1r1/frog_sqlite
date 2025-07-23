@@ -28,7 +28,8 @@ FROM debian:bullseye-slim AS sqlite_source
 # --no-install-recommends helps keep the image small
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y libsqlite3-0 && \
-    rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* # Clean up apt cache
+    rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* 
+    # Clean up apt cache
 
 # --- FINAL RUNTIME IMAGE ---
 FROM debian:bullseye-slim
@@ -54,9 +55,9 @@ RUN groupadd -g 1000 appuser \
 # Создаем директорию /data (если ее нет) и назначаем ей права
 # Ошибка указала на /data, поэтому даем права именно ей.
 # Также убедимся, что /app (где находится код приложения) принадлежит этому пользователю.
-RUN mkdir -p /data \
-    && chown -R 1000:1000 /data \
-    && chmod -R 775 /data \
+RUN mkdir -p /database \
+    && chown -R 1000:1000 /database \
+    && chmod -R 775 /database \
     && chown -R 1000:1000 /app 
     # Убедимся, что /app также принадлежит пользователю 1000
 

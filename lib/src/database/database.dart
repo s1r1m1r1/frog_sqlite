@@ -29,11 +29,9 @@ class AppDatabase extends _$AppDatabase {
 
   // Example queries
   Future<List<UserEntry>> getAllUsers() => select(users).get();
-  Future<UserEntry?> getUserById(int id) =>
-      (select(users)..where((u) => u.id.equals(id))).getSingleOrNull();
+  Future<UserEntry?> getUserById(int id) => (select(users)..where((u) => u.id.equals(id))).getSingleOrNull();
   Future<int> createUser(UsersCompanion entry) => into(users).insert(entry);
-  Future<int> deleteUser(int id) =>
-      (delete(users)..where((u) => u.id.equals(id))).go();
+  Future<int> deleteUser(int id) => (delete(users)..where((u) => u.id.equals(id))).go();
 
   // You can also write raw SQL queries if needed:
   // Future<List<User>> rawUsers() => customSelect('SELECT * FROM users').map((row) => User.fromData(row.data, this)).get();
@@ -44,8 +42,9 @@ LazyDatabase _openConnection() {
   return LazyDatabase(() async {
     final appEnv = Platform.environment['APP_ENV'];
     final dbPath = appEnv == 'production'
-        ? p.join('/app', 'data', 'app.db') // Docker path
-        : p.join(Directory.current.path, 'data', 'app.db'); // Local path
+        // /database/app.db
+        ? p.join('/app', 'database', 'app.db') // Docker path
+        : p.join(Directory.current.path, 'database', 'app.db'); // Local path
 
     final file = File(dbPath);
     if (!file.parent.existsSync()) {

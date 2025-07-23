@@ -29,7 +29,9 @@ FROM debian:bullseye-slim AS sqlite_source
 # --no-install-recommends helps keep the image small
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y libsqlite3-0 && \
-    rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* # Clean up apt cache
+    rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* 
+    # Clean up apt cache
+
 
 # --- FINAL RUNTIME IMAGE ---
 # Use debian:bullseye-slim as the final base image.

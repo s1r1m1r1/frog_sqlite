@@ -20,3 +20,7 @@ docker run -d \
   dart-frog-app:latest
 
 
+<!--  -->
+docker tag dart-frog-app:prod reestr-docker.cr.cloud.ru/first:frog-cloud-app
+
+docker push reestr-docker.cr.cloud.ru/first:frog-cloud-app
